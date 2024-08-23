@@ -1,0 +1,23 @@
+FROM node:20-alpine
+
+RUN mkdir -p /app
+
+COPY package.json /app/
+COPY src /app/src/
+
+ENV MONGODB_URI=mongodb+srv://mayankg:MayankMongodb@cluster0.av9dopc.mongodb.net
+ENV PORT=8000
+ENV REFRESH_TOKEN_SECRET=66275c14736e245a6a7f8095d7698f36db8cc778d1cb4dd0bd91f2bda847e7cb
+ENV REFRESH_TOKEN_EXPIRY=10d
+ENV ACCESS_TOKEN_SECRET=c59c1186b6ca287246cb1ab90cce26b969a769ed999f6503926cdc5b375923f3
+ENV ACCESS_TOKEN_EXPIRY=1d
+ENV CLOUDINARY_CLOUD_NAME=merichaiaurcode
+ENV CLOUDINARY_API_KEY=917276293374377
+ENV CLOUDINARY_API_SECRET=OWP8hP_YHSBBiRZ4gWzzoRpmFCA
+ENV CORS_ORIGIN=http://localhost:3000
+
+WORKDIR /app
+
+RUN npm install
+
+CMD ["node","src/index.js"]
